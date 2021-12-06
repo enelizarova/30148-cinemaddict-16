@@ -1,1 +1,1 @@
-export const createFilmsWrapperTemplate = () => (`<section class="films"></section>`);
+export const createFilmsWrapperTemplate = () => ('<section class="films"></section>');
