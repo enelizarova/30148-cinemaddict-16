@@ -12,6 +12,8 @@ import {createLoadingTemplate} from './view/loading.js';
 
 import {createFooterStatisticsTemplate} from './view/footer-statistics.js';
 
+import {generateFilm} from './mock/films';
+
 // import {createPopupTemplate} from './view/popup.js';
 
 const RenderPosition = {
@@ -22,6 +24,8 @@ const RenderPosition = {
 };
 
 const FILMS_COUNT = 5;
+
+const films = Array.from({length: FILMS_COUNT}, generateFilm);
 
 const renderTemplate = (container, template, place) => {
   container.insertAdjacentHTML(place, template);
@@ -47,7 +51,7 @@ const siteFilmsWrapperElement = document.querySelector('.films-list__container')
 const siteFilmsListElement = document.querySelector('.films-list');
 
 for (let i = 0; i < FILMS_COUNT; i++) {
-  renderTemplate(siteFilmsWrapperElement, createFilmCardTemplate(), RenderPosition.BEFOREEND);
+  renderTemplate(siteFilmsWrapperElement, createFilmCardTemplate(films[i]), RenderPosition.BEFOREEND);
 }
 
 renderTemplate(siteFilmsListElement, createShowMoreTemplate(), RenderPosition.BEFOREEND);

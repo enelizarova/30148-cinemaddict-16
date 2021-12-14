@@ -9,6 +9,4 @@ export const getRandomInteger = (a = 0, b = 1) => {
 
 export const isTaskRepeating = (repeating) => Object.values(repeating).some(Boolean);
 
-export const humanizeTaskDueDate = (dueDate) => dayjs(dueDate).format('D MMMM');
-
-export const randomIndex = (arr) => getRandomInteger(0, (arr).length - 1);
+export const humanizeDate = (date) => dayjs(date).format('DD/MM/YYYY HH:mm');
