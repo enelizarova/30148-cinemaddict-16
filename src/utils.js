@@ -9,4 +9,11 @@ export const getRandomInteger = (a = 0, b = 1) => {
 
 export const isTaskRepeating = (repeating) => Object.values(repeating).some(Boolean);
 
-export const humanizeDate = (date) => dayjs(date).format('DD/MM/YYYY HH:mm');
+export const humanizeDate = (date, format) => dayjs(date).format(format);
+
+export const generateDate = (minDaysGap, maxDaysGap) => {
+  const daysGap = getRandomInteger(-minDaysGap, -maxDaysGap);
+  return dayjs().add(daysGap, 'day').toDate();
+};
+
+export const truncate = (str, maxlength) => str.length > maxlength ? `${str.slice(0, maxlength - 1)  }…` : str;

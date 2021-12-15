@@ -1,6 +1,4 @@
-import dayjs from 'dayjs';
-import {EMOJI} from '../const.js';
-import { getRandomInteger, humanizeDate } from '../utils.js';
+import { getRandomInteger, generateDate } from '../utils.js';
 
 const generateTitle = () => {
   const titles = [
@@ -51,75 +49,40 @@ const generateDescription = () => {
   return descriptions;
 };
 
-const generateRating = () => getRandomInteger(0, 10);
-
-const generateRelease = () => {
-  const releaseDate = [
-    '1936',
-    '1929',
-    '1955',
-    '1933',
-    '1964',
-    '1937'
+const generateGenre = () => {
+  const genres = [
+    'Cartoon',
+    'Western',
+    'Musical',
+    'Drama',
+    'Mystery',
+    'Comedy'
   ];
 
-  const randomIndex = getRandomInteger(0, releaseDate.length - 1);
+  const randomIndex = getRandomInteger(0, genres.length - 1);
 
-  return releaseDate[randomIndex];
-};
+  return genres[randomIndex];
 
-const generateDuration = () => {
-  const duration = [
-    '123',
-    '54',
-    '100',
-    '144',
-    '199'
-  ];
-
-  const randomIndex = getRandomInteger(0, duration.length - 1);
-
-  return duration[randomIndex];
-};
-
-const getRandomEmoji = () => {
-  const randomIndex = getRandomInteger(0, EMOJI.length - 1);
-
-  return EMOJI[randomIndex];
-};
-
-const generateDate = () => {
-  const maxDaysGap = 14;
-  const daysGap = getRandomInteger(-maxDaysGap, maxDaysGap);
-  return dayjs().add(daysGap, 'day').toDate();
 };
 
 export const generateFilm = () => {
-  const commentDdate = generateDate();
+  const releaseDate = generateDate(14, 14440);
+  const filmDuration = generateDate(10, 50);
   return {
     title: generateTitle(),
     poster: generatePoster(),
-    posterFull: 'posterFull',
     description: generateDescription(),
-    shortDescription: 'shortDescription',
-    rating: generateRating(),
-    releaseDate: generateRelease(),
-    duration: generateDuration(),
-    genre: 'genre',
-    commentsCount: 'commentsCount',
+    rating: getRandomInteger(0, 10),
+    releaseDate,
+    filmDuration,
+    genre: generateGenre(),
+    commentsCount: getRandomInteger(0, 10),
     director: 'director',
     screenwriter: 'screenwriter',
     actors: ['actor1', 'actor2'],
     country: 'country',
-    isInWatchlist: false,
-    isWatched: false,
-    isFavorite: false,
-    commentDdate,
-    comment: [ {
-      emoji: getRandomEmoji(),
-      commentDdate,
-      author: 'author',
-      commentContent: 'commentContent'
-    }]
+    isInWatchlist: Boolean(getRandomInteger(0, 1)),
+    isWatched: Boolean(getRandomInteger(0, 1)),
+    isFavorite: Boolean(getRandomInteger(0, 1))
   };
 };
